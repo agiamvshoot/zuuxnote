@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ZuuXNote</title>
+<meta name="theme-color" content="#375FFF">
+<meta name="description" content="Catatan cepat yang tersinkron antara PC dan HP">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ZuuXNote">
+<link rel="stylesheet" href="style.css">
+<style>
+  .sync-extra{ display:flex; align-items:center; gap:8px; }
+  .code-btn{
+    background:#fff; border:1px solid var(--card-border); border-radius:999px;
+    padding:7px 12px; font-family:var(--font-mono); font-size:12px; color:var(--ink);
+    cursor:pointer;
+  }
+  .sync-panel{
+    display:none; position:absolute; right:20px; top:70px; z-index:10;
+    background:var(--card); border:1px solid var(--card-border); border-radius:12px;
+    padding:16px; width:280px; box-shadow:0 8px 24px rgba(36,33,29,0.12);
+  }
+  .sync-panel.open{ display:block; }
+  .sync-panel h3{ margin:0 0 6px; font-size:13px; font-family:var(--font-mono); }
+  .sync-panel p{ margin:0 0 10px; font-size:12px; color:var(--ink-soft); line-height:1.6; }
+  .code-display{
+    font-family:var(--font-mono); font-size:20px; font-weight:700; letter-spacing:3px;
+    background:#fff; border:1px dashed var(--card-border); border-radius:8px;
+    padding:10px; text-align:center; margin-bottom:12px; color:var(--zuu-blue);
+  }
+  .join-row{ display:flex; gap:6px; }
+  .join-row input{
+    flex:1; border:1px solid var(--card-border); border-radius:8px; padding:8px;
+    font-family:var(--font-mono); font-size:13px; text-transform:uppercase;
+  }
+  .join-row button{
+    background:var(--zuu-blue); color:#fff; border:none; border-radius:8px;
+    padding:0 12px; font-family:var(--font-mono); font-size:12px; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header style="position:relative;">
+    <div class="brand">
+      <div class="mark">Zuu<span class="x">X</span>Note</div>
+      <div class="tag">// catatan, tersambung di mana saja</div>
+    </div>
+    <div class="header-actions">
+      <button class="install-btn" id="installBtn">⬇ Install aplikasi</button>
+      <button class="code-btn" id="syncCodeBtn">Kode sinkron</button>
+      <div class="sync-pill local" id="syncPill">
+        <div class="sync-dot"></div>
+        <span id="syncLabel">Hanya di perangkat ini</span>
+        <div class="sync-thread">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M1 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <div class="thread-line"><div class="thread-pulse"></div></div>
+          <svg width="10" height="14" viewBox="0 0 16 22" fill="none"><rect x="1" y="1" width="14" height="20" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M6 18h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sync-panel" id="syncPanel">
+      <h3>Kode sinkron perangkat ini</h3>
+      <div class="code-display" id="syncCodeDisplay">— belum aktif —</div>
+      <p>Buka ZuuXNote di perangkat lain, lalu masukkan kode di atas supaya catatan tersambung. (Aktif hanya jika sinkronisasi sudah dikonfigurasi — lihat firebase-config.js)</p>
+      <div class="join-row">
+        <input type="text" id="joinCodeInput" placeholder="MASUKKAN KODE" maxlength="6">
+        <button id="joinCodeBtn">Gabung</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="board">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <div class="search-row">
+          <input type="text" id="searchInput" placeholder="Cari catatan…">
+        </div>
+        <button class="new-btn" id="newNoteBtn">+ Catatan baru</button>
+      </div>
+      <ul class="notes-list" id="notesList"></ul>
+    </aside>
+
+    <section class="editor" id="editorPane"></section>
+  </div>
+</div>
+
+<script src="firebase-config.js"></script>
+<script src="app.js" type="module"></script>
+</body>
+</html>
