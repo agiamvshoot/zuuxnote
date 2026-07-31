@@ -19,10 +19,10 @@
 // ============================================================
 
 window.ZUUXNOTE_FIREBASE_CONFIG = {
-  apiKey: "GANTI_DENGAN_API_KEY_ANDA",
-  authDomain: "GANTI.firebaseapp.com",
-  projectId: "GANTI",
-  storageBucket: "GANTI.appspot.com",
-  messagingSenderId: "GANTI",
-  appId: "GANTI"
+  apiKey: "AIzaSyBnuoFH55YXLHYZXlnKy6L6_4JFDGFRVR8",
+  authDomain: "zuuxnote.firebaseapp.com",
+  projectId: "zuuxnote",
+  storageBucket: "zuuxnote.firebasestorage.app",
+  messagingSenderId: "213026427336",
+  appId: "1:213026427336:web:aa431a9ed4a966e8b470fd"
 };
